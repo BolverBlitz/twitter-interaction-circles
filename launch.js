@@ -16,8 +16,9 @@ bot.on(/^\/run(.+)$/i, (msg, props) => {
     console.log(Username)
     if (fs.existsSync('/var/www/html/' + Username + '.png')) {
         console.log("Exist")
-        msg.reply.text(`Made by: https://github.com/duiker101/twitter-interaction-circles\nTelegram version made by @BolverBlitz`);
-        bot.sendPhoto(msg.chat.id, "http://v2.bolverblitz.net/" + Username + ".png")
+        bot.sendPhoto(msg.chat.id, "http://v2.bolverblitz.net/" + Username + ".png").then(function(Output) {
+            msg.reply.text(`Made by: https://github.com/duiker101/twitter-interaction-circles\nTelegram version made by @BolverBlitz\nDownload full png: http://v2.bolverblitz.net/${Username}.png`);
+        });
     }else{
         App.main(Username).then(function(Output) {
             msg.reply.text(`Made by: https://github.com/duiker101/twitter-interaction-circles\nTelegram version made by @BolverBlitz`);
