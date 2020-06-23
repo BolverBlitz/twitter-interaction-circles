@@ -21,8 +21,9 @@ bot.on(/^\/run(.+)$/i, (msg, props) => {
         });
     }else{
         App.main(Username).then(function(Output) {
-            msg.reply.text(`Made by: https://github.com/duiker101/twitter-interaction-circles\nTelegram version made by @BolverBlitz`);
-            bot.sendPhoto(msg.chat.id, "http://v2.bolverblitz.net/" + Username + ".png")
+            bot.sendPhoto(msg.chat.id, "http://v2.bolverblitz.net/" + Username + ".png").then(function(Output) {
+                msg.reply.text(`Made by: https://github.com/duiker101/twitter-interaction-circles\nTelegram version made by @BolverBlitz\nDownload full png: http://v2.bolverblitz.net/${Username}.png`);
+            });
         }).catch(error => msg.reply.text(`ImgGen Error: ${error.errors[0].message}`));
       }
 });
