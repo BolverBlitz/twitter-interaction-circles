@@ -1,6 +1,18 @@
 
 ![Example](circle.png)
 
+## Installation for Telegram usage
+Follow the installation below  
+run a webserver on port 80 or 443
+set path in ./src/image.js (line: 68) to the webserver root directory
+set url in ./launch.js (line: 17)
+enter telegram bottoken in secret.json.example and remove .example
+```shell script
+npm i telebot
+node launch.js
+```
+
+
 # Twitter Interaction Circle
 
 Originally from [Twopcharts](https://twopcharts.com/) it has been making the round in the dev community.
