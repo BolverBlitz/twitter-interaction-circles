@@ -50,15 +50,18 @@ module.exports = async function render(config, username) {
 			ctx.beginPath();
 			ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
 			ctx.clip();
-
-			const img = await loadImage(users[i].avatar);
-			ctx.drawImage(
-				img,
-				centerX - radius,
-				centerY - radius,
-				radius * 2,
-				radius * 2
-			);
+			if(users[i].avatar){
+				const img = await loadImage(users[i].avatar);
+				ctx.drawImage(
+					img,
+					centerX - radius,
+					centerY - radius,
+					radius * 2,
+					radius * 2
+				);
+			}else{
+				console.log(`Missing avatar image for ${users[i].screen_name}`);
+			}
 
 			ctx.restore();
 		}
