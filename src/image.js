@@ -50,18 +50,20 @@ module.exports = async function render(config, username) {
 			ctx.beginPath();
 			ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
 			ctx.clip();
-			if(users[i].avatar){
-				const img = await loadImage(users[i].avatar);
-				ctx.drawImage(
-					img,
-					centerX - radius,
-					centerY - radius,
-					radius * 2,
-					radius * 2
-				);
-			}else{
-				console.log(`Missing avatar image for ${users[i].screen_name}`);
-			}
+			
+			const defaultAvatarUrl = "https://abs.twimg.com/sticky/default_profile_images/default_profile_200x200.png";
+			const avatarUrl = users[i].avatar || defaultAvatarUrl;
+			
+			const img = await loadImage(avatarUrl);
+			
+			ctx.drawImage(
+				img,
+				centerX - radius,
+				centerY - radius,
+				radius * 2,
+				radius * 2
+			);
+			
 
 			ctx.restore();
 		}
